@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Crimson - WW2 Soviet Defense</name>
+	<author>Nikolas Makarov</author>
+	<supportedVersions>
+		<li>1.4</li>
+	</supportedVersions>
+	<packageId>CC.Soviet.SupportGun</packageId>
+	<description>Description:
+
+Dive into the heart of World War II with Crimson Corps, a meticulously crafted "balance" mod that introduces a diverse array of iconic Mosin Nagant rifles in various authentic variants. Immerse yourself in the historic battlegrounds armed with these powerful weapons, each painstakingly designed for accuracy and tested rigorously to ensure a seamless gaming experience.
+
+Embark on a journey through history with us and experience World War II like never before. Engage in thrilling battles with the iconic Mosin Nagant rifles that played a pivotal role in shaping the course of history.
+
+This mod is totally balance and tested by my colonist.
+
+All visual assets, including textures, models, and any other graphical elements, are the intellectual property of © 2024 Crimson Corps. and are protected under copyright law. Any unauthorized use, reproduction, or distribution of these assets is strictly prohibited.
+	</description>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2009463077</steamWorkshopUrl>
+		</li>
+		<li>
+			<packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
+			<displayName>Vanilla Expanded Framework</displayName>
+			<downloadUrl>https://github.com/Vanilla-Expanded/VanillaExpandedFramework</downloadUrl>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2023507013</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>Ludeon.RimWorld</li>
+		<li>brrainz.harmony</li>
+		<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+	</loadAfter>
+</ModMetaData>

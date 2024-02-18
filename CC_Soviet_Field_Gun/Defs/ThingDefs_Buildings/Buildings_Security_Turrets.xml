@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ====================== Base Body(Should not be touched!) ===================== -->
+
+	<ThingDef Abstract="true" Name="CCBaseATSupportBuilding" ParentName="BuildingBase">
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>Item</altitudeLayer>
+		<techLevel>Industrial</techLevel>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<statBases>
+			<Flammability>0.15</Flammability>
+			<Beauty>10</Beauty>		
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.85</fillPercent>
+		<castEdgeShadows>False</castEdgeShadows>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+			<li>PlaceWorker_ShowTurretRadius</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
+		</comps>
+		<hasInteractionCell>True</hasInteractionCell>
+	</ThingDef>
+	<ThingDef Abstract="true" ParentName="BaseWeaponTurret" Name="CCBaseATWeapon">
+		<destroyOnDrop>true</destroyOnDrop>
+		<tradeability>None</tradeability>
+		<useHitPoints>false</useHitPoints>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Flammability>0</Flammability>
+		</statBases>
+	</ThingDef>
+
+	<!-- ========== Projectiles ========== -->
+	<!-- == M-42 == -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>Shell_UBR-240P_APCR</defName>
+		<label>UBR-240P</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>42</damageAmountBase>
+			<explosionRadius>1.2</explosionRadius>
+			<armorPenetrationBase>0.28</armorPenetrationBase>
+			<speed>120</speed> 
+		</projectile>
+	</ThingDef>
+
+	<!-- == ZiS-3 == -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Shell_BP-350M_HEAT</defName>
+		<label>BP-350M</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>72</damageAmountBase>
+			<explosionRadius>1.9</explosionRadius>
+			<armorPenetrationBase>0.42</armorPenetrationBase>
+			<speed>120</speed> 
+		</projectile>
+	</ThingDef>
+
+	<!-- == BS-3 == -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Shell_BR-412B_APBC</defName>
+		<label>BR-412B</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>128</damageAmountBase>
+			<explosionRadius>3.1</explosionRadius>
+			<armorPenetrationBase>0.94</armorPenetrationBase>
+			<speed>120</speed> 
+		</projectile>
+	</ThingDef>	
+
+	<!-- ================================ The Buildings ================================ -->
+	<!-- ==== M-42 M1942 ==== -->
+
+	<ThingDef ParentName="CCBaseATSupportBuilding">
+		<defName>M-42_body</defName> 
+		<label>M-42</label>
+		<description>The 45 mm anti-tank gun M1942 (M-42) was developed as an upgrade of the 45 mm anti-tank gun M1937. The gun received a longer barrel, shells with more powerful cartridges, and a thicker shield.
+		
+ A swift and lethal solution against lightly armored threats.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/M-42_Base</texPath> 
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(5,5)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+		<size>(2,2)</size>
+		<uiIconPath>UI/M-42_UI</uiIconPath>
+		<statBases>
+			<MaxHitPoints>450</MaxHitPoints>
+			<WorkToBuild>18000</WorkToBuild> 
+			<Mass>60</Mass>
+		</statBases>
+		<interactionCellOffset>(0,0,0)</interactionCellOffset>		
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>20</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>0.50</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Need more shells</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<costList>
+			<Steel>350</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ReinforcedBarrel>1</ReinforcedBarrel>
+		</costList>
+		<building>
+			<turretTopDrawSize>4.5</turretTopDrawSize>
+			<turretGunDef>M-42_barrel</turretGunDef>
+			<turretBurstCooldownTime>4.05</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>BlowbackOperation</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="CCBaseATWeapon"> 
+		<defName>M-42_barrel</defName> 
+		<label>M-42</label>
+		<description>The 45 mm anti-tank gun M1942 (M-42) was developed as an upgrade of the 45 mm anti-tank gun M1937. The gun received a longer barrel, shells with more powerful cartridges, and a thicker shield.
+		
+ A swift and lethal solution against lightly armored threats.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/M-42_AT</texPath> 
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.66</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.82</AccuracyLong>
+			<RangedWeapon_Cooldown>3.85</RangedWeapon_Cooldown>
+			<Mass>35.2</Mass>
+		</statBases>
+		<soundInteract>CC_interact_SFG</soundInteract>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Shell_UBR-240P_APCR</defaultProjectile>
+				<warmupTime>4.25</warmupTime>
+				<forcedMissRadius>0.1</forcedMissRadius>
+				<range>38</range>
+				<minRange>2.4</minRange>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>CC_shot_M-42</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>				
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- ==== ZiS-3 M1942 ==== -->
+
+	<ThingDef ParentName="CCBaseATSupportBuilding">
+		<defName>ZiS-3_body</defName> 
+		<label>ZiS-3</label>
+		<description>The 76 mm divisional gun M1942 (ZiS-3) combined the light carriage from the 57 mm ZiS-3 anti-tank gun and the powerful 76.2 mm barrel from the F-22USV, the previous divisional field gun.
+		
+A tough defender against armored foes, providing precision and strength to counter small to medium mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/ZiS-3_Base</texPath> 
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(6,6)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+		<size>(2,3)</size>
+		<uiIconPath>UI/Zis-3_UI</uiIconPath>
+		<statBases>
+			<MaxHitPoints>600</MaxHitPoints>
+			<WorkToBuild>23000</WorkToBuild> 
+			<Mass>186.8</Mass>
+		</statBases>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>		
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>20</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>0.25</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Need more shells</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<costList>
+			<Steel>550</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ReinforcedBarrel>1</ReinforcedBarrel>
+		</costList>
+		<building>
+			<turretTopDrawSize>6</turretTopDrawSize>
+			<turretGunDef>ZiS-3_barrel</turretGunDef>
+			<turretBurstCooldownTime>4.05</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>BlowbackOperation</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="CCBaseATWeapon"> 
+		<defName>ZiS-3_barrel</defName> 
+		<label>ZiS-3</label>
+		<description>76 mm divisional gun M1942 (ZiS-3). The ZiS-3 combined the light carriage from the 57 mm ZiS-3 anti-tank gun and the powerful 76.2 mm barrel from the F-22USV, the previous divisional field gun.
+		
+A tough defender against armored foes, providing precision and strength to counter small to medium mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/ZiS-3_AT</texPath> 
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.64</AccuracyShort>
+			<AccuracyMedium>0.85</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>4.25</RangedWeapon_Cooldown>
+			<Mass>35.2</Mass>
+		</statBases>
+		<soundInteract>CC_interact_SFG</soundInteract>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Shell_BP-350M_HEAT</defaultProjectile>
+				<warmupTime>4.25</warmupTime>
+				<forcedMissRadius>0.1</forcedMissRadius>
+				<range>46</range>
+				<minRange>3.9</minRange>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>CC_shot_ZiS-3</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>				
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- ==== BS-3 M1944 ==== -->
+
+	<ThingDef ParentName="CCBaseATSupportBuilding">
+		<defName>BS-3_body</defName> 
+		<label>BS-3</label>
+		<description>The 100 mm field gun M1944 (BS-3) was based on the B-34 naval gun. In the Second World War the BS-3 was successfully used as a powerful anti-tank gun. It was capable of defeating any contemporary tank at long range, excluding the Tiger II.
+		
+A field gun designed for maximum impact. Its formidable firepower makes it a formidable adversary even against the largest and most armored mechanoids, ensuring superiority on the battlefield.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/BS-3_Base</texPath> 
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(10,10)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+		<size>(3,3)</size>
+		<uiIconPath>UI/BS-3_UI</uiIconPath>
+		<statBases>
+			<MaxHitPoints>925</MaxHitPoints>
+			<WorkToBuild>28500</WorkToBuild> 
+			<Mass>186.8</Mass>
+		</statBases>
+		<interactionCellOffset>(-1,0,-1)</interactionCellOffset>		
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>20</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>0.05</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Need more shells</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<costList>
+			<Steel>750</Steel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ReinforcedBarrel>2</ReinforcedBarrel>
+		</costList>
+		<building>
+			<turretTopDrawSize>10</turretTopDrawSize>
+			<turretGunDef>BS-3_barrel</turretGunDef>
+			<turretBurstCooldownTime>4.05</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>BlowbackOperation</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="CCBaseATWeapon"> 
+		<defName>BS-3_barrel</defName> 
+		<label>BS-3</label>
+		<description>The 100 mm field gun M1944 (BS-3) was based on the B-34 naval gun. In the Second World War the BS-3 was successfully used as a powerful anti-tank gun. It was capable of defeating any contemporary tank at long range, excluding the Tiger II.
+		
+A field gun designed for maximum impact. Its formidable firepower makes it a formidable adversary even against the largest and most armored mechanoids, ensuring superiority on the battlefield.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/BS-3_AT</texPath> 
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.82</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>5.25</RangedWeapon_Cooldown>
+			<Mass>608.34</Mass>
+		</statBases>
+		<soundInteract>CC_interact_SFG</soundInteract>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Shell_BR-412B_APBC</defaultProjectile>
+				<warmupTime>4.25</warmupTime>
+				<forcedMissRadius>0.1</forcedMissRadius>
+				<range>52</range>
+				<minRange>5.4</minRange>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>CC_shot_BS-3</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>				
+			</li>
+		</verbs>
+	</ThingDef>	
+</Defs>
+

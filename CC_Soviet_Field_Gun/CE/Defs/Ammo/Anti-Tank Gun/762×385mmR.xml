@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo762x385mmRCannonShells</defName>
+		<label>76.2x385mmR cannon shell</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_762x385mmRCannonShell</defName>
+		<label>76.2x385mmR cannon shells</label>
+		<ammoTypes>
+			<Ammo_762x385mmRCannonShell_HE>Bullet_762x385mmRCannonShell_HE</Ammo_762x385mmRCannonShell_HE>
+			<Ammo_762x385mmRCannonShell_AP>Bullet_762x385mmRCannonShell_AP</Ammo_762x385mmRCannonShell_AP>
+			<Ammo_762x385mmRCannonShell_HEAT>Bullet_762x385mmRCannonShell_HEAT</Ammo_762x385mmRCannonShell_HEAT>
+		</ammoTypes>
+		<similarTo>AmmoSet_HeavyCannon</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo762x385mmRCannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>Large cannon shells, typically used by 76.2 mm divisional and regimental guns.</description>
+		<thingCategories>
+			<li>Ammo762x385mmRCannonShells</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<Mass>6.2</Mass>
+			<Bulk>8.42</Bulk>
+		</statBases>
+		<cookOffFlashScale>30</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo762x385mmRCannonShellBase">
+		<defName>Ammo_762x385mmRCannonShell_HE</defName>
+		<label>76.2x385mmR cannon shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Anti-Tank_Gun_Ammo/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>68.52</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_762x385mmRCannonShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo762x385mmRCannonShellBase">
+		<defName>Ammo_762x385mmRCannonShell_AP</defName>
+		<label>762x385mmR cannon shell (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Anti-Tank_Gun_Ammo/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>68.52</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<detonateProjectile>Bullet_762x385mmRCannonShell_AP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo762x385mmRCannonShellBase">
+		<defName>Ammo_762x385mmRCannonShell_HEAT</defName>
+		<label>762x385mmR cannon shell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Anti-Tank_Gun_Ammo/HEAT</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>68.52</MarketValue>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_762x385mmRCannonShell_HEAT</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base762x385mmRCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base762x385mmRCannonShell">
+		<defName>Bullet_762x385mmRCannonShell_HE</defName>
+		<label>76.2x385mmR cannon shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Anti-Tank_Gun_Bullet/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>165</speed>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>148</damageAmountBase>
+			<explosionRadius>1.9</explosionRadius>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>26</Fragment_Large>
+					<Fragment_Small>20</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base762x385mmRCannonShell">
+		<defName>Bullet_762x385mmRCannonShell_AP</defName>
+		<label>76.2x385mmR cannon shell (AP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Anti-Tank_Gun_Bullet/AP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>165</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>156</damageAmountBase>
+			<armorPenetrationSharp>240</armorPenetrationSharp>
+			<armorPenetrationBlunt>46.72</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base762x385mmRCannonShell">
+		<defName>Bullet_762x385mmRCannonShell_HEAT</defName>
+		<label>76.2x385mmR cannon shell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Anti-Tank_Gun_Bullet/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>165</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>178</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>315</armorPenetrationSharp>
+			<armorPenetrationBlunt>50.05</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>89</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.4</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>12</Fragment_Large>
+					<Fragment_Small>18</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_762x385mmRCannonShell_HE</defName>
+		<label>make 76.2x385mmR HE cannon shells x5</label>
+		<description>Craft 5 76.2x385mmR HE cannon shells.</description>
+		<jobString>Making 76.2x385mmR HE cannon shells.</jobString>
+		<workAmount>15400</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>174</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_762x385mmRCannonShell_HE>5</Ammo_762x385mmRCannonShell_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_762x385mmRCannonShell_AP</defName>
+		<label>make 76.2x385mmR AP cannon shells x8</label>
+		<description>Craft 5 76.2x385mmR AP cannon shells.</description>
+		<jobString>Making 76.2x385mmR AP cannon shells.</jobString>
+		<workAmount>16200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>158</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_762x385mmRCannonShell_AP>5</Ammo_762x385mmRCannonShell_AP>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_762x385mmRCannonShell_HEAT</defName>
+		<label>make 76.2x385mmR HEAT cannon shells x8</label>
+		<description>Craft 5 76.2x385mmR HEAT cannon shells.</description>
+		<jobString>Making 76.2x385mmR HEAT cannon shells.</jobString>
+		<workAmount>16200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>158</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_762x385mmRCannonShell_HEAT>5</Ammo_762x385mmRCannonShell_HEAT>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+</Defs>

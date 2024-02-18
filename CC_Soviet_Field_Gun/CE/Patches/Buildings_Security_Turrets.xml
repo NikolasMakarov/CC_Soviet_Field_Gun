@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+		
+			<!-- == Shared patches == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="CCBaseATSupportBuilding"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					<statBases>
+						<AimingAccuracy>0.9</AimingAccuracy>
+						<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+					</statBases>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+					defName="M-42_body" or
+					defName="ZiS-3_body" or
+					defName="BS-3_body"
+					]/comps/li[@Class = "CompProperties_Refuelable"]
+				</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="M-42_body" or
+					defName="ZiS-3_body" or
+					defName="BS-3_body"
+					]/researchPrerequisites
+				</xpath>
+				<value>
+					<researchPrerequisites>
+						<li>CE_TurretHeavyWeapons</li>
+						<li>CE_HeavyTurret</li>
+					</researchPrerequisites>
+				</value>
+			</li>
+
+			<!-- ================================ The Turrets ================================ -->
+			<!-- ==== M-42 M1942 ==== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="M-42_body"]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>53500</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>M-42_barrel</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.36</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.41</SwayFactor>
+					<Bulk>170</Bulk>
+					<Mass>156.25</Mass>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.94</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_45x310mmRCannonShell_AP</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<minRange>2.4</minRange>
+					<range>76</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>CC_shot_M-42</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>13</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2.65</reloadTime>
+					<ammoSet>AmmoSet_45x310mmRCannonShell</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ==== ZiS-3 M1942 ==== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ZiS-3_body"]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>53500</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>ZiS-3_barrel</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>2.45</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.36</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.41</SwayFactor>
+					<Bulk>300</Bulk>
+					<Mass>279</Mass>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.94</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Ammo_762x385mmRCannonShell_AP</defaultProjectile>
+					<warmupTime>1.25</warmupTime>
+					<minRange>3.9</minRange>
+					<range>84</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>CC_shot_ZiS-3</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>13</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2.65</reloadTime>
+					<ammoSet>AmmoSet_762x385mmRCannonShell</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>		
+
+			<!-- ==== BS-3 M1944 ==== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BS-3_body"]/statBases/WorkToBuild</xpath>
+				<value>
+					<WorkToBuild>53500</WorkToBuild>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>BS-3_barrel</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>2.95</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.36</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.41</SwayFactor>
+					<Bulk>952.68</Bulk>
+					<Mass>912.5</Mass>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.94</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_100x695mmRCannonShell_HEAT</defaultProjectile>
+					<warmupTime>1.75</warmupTime>
+					<minRange>5.4</minRange>
+					<range>108</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>CC_shot_M-42</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>13</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2.65</reloadTime>
+					<ammoSet>AmmoSet_100x695mmRCannonShell</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>				
+		</operations>
+	</Operation>
+</Patch>
